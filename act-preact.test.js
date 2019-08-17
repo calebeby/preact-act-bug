@@ -25,3 +25,14 @@ test('act', () => {
     )
   })
 })
+
+// Passes but causes unhandled promise rejection warning if you run it with `test.only`
+test('no act', () => {
+  const target = document.createElement('div')
+  render(
+    <ErrorBoundary>
+      <ThrowingComponent />
+    </ErrorBoundary>,
+    target,
+  )
+})

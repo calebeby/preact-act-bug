@@ -15,13 +15,22 @@ class ErrorBoundary extends React.Component {
 
 test('act', () => {
   jest.spyOn(console, 'error').mockImplementation(() => {})
-  act(() => {
-    const target = document.createElement('div')
-    render(
-      <ErrorBoundary>
-        <ThrowingComponent />
-      </ErrorBoundary>,
-      target,
-    )
-  })
+  const target = document.createElement('div')
+  render(
+    <ErrorBoundary>
+      <ThrowingComponent />
+    </ErrorBoundary>,
+    target,
+  )
+})
+
+// Passes, no unhandled promise rejection warning
+test('no act', () => {
+  const target = document.createElement('div')
+  render(
+    <ErrorBoundary>
+      <ThrowingComponent />
+    </ErrorBoundary>,
+    target,
+  )
 })
